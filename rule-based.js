@@ -230,32 +230,6 @@ const PATTERNS = [
   },
 ];
 
-function getTimeBasedResponse() {
-  const hour = new Date().getHours();
-
-  if (hour >= 5 && hour < 12) {
-    return [
-      "Pagi sayang! ☀️ Maaf ya aku baru bangun/lagi sibuk pagi ini! Hope {reflected} having a great morning! 🥰",
-      "Good morning my love! 🌅 Sorry for the delayed response, but thinking of {reflected} already! 💕",
-    ];
-  } else if (hour >= 12 && hour < 17) {
-    return [
-      "Afternoon baby! 🌞 Lagi sibuk siang ini, tapi aku miss {reflected}! Hope {reflected} lunch was good! 😘",
-      "Siang sayang! ☀️ Sorry late reply, but {reflected} always on my mind! 💭❤️",
-    ];
-  } else if (hour >= 17 && hour < 22) {
-    return [
-      "Evening love! 🌆 Maaf baru bisa bales, tapi aku kangen {reflected}! How was {reflected} day? 🥰",
-      "Sore sayang! 🌇 Been thinking about {reflected} all day! Sorry for being MIA! 😘💕",
-    ];
-  } else {
-    return [
-      "Late night message! 🌙 Aku lagi istirahat/tidur, tapi aku sayang {reflected}! Sweet dreams if {reflected} sleeping too! 😴💕",
-      "Midnight thoughts of {reflected}! 🌟 Sorry kalau ga langsung bales, but love {reflected} always! Good night! 😘",
-    ];
-  }
-}
-
 const DEFAULT_RESPONSES = [
   "Hey sayang! 😘 Maaf aku lagi ga bisa chat proper, but I got your message! Nanti aku bales yang beneran ya! Love you! ❤️",
   "My love! 🥰 Currently unavailable tapi aku baca pesanmu! you so sweet for texting me! Miss you! 💕",
@@ -324,8 +298,7 @@ function processMessage(message, userName = "sayang") {
     }
   }
 
-  const timeResponses = getTimeBasedResponse();
-  const allDefaults = [...DEFAULT_RESPONSES, ...timeResponses];
+  const allDefaults = [...DEFAULT_RESPONSES];
   let response = allDefaults[Math.floor(Math.random() * allDefaults.length)];
 
   response = response.replace(/{reflected}/g, reflect(message) || userName);
@@ -339,5 +312,4 @@ module.exports = {
   REFLECTIONS,
   reflect,
   processMessage,
-  getTimeBasedResponse,
 };
