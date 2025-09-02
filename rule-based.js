@@ -16,20 +16,17 @@ const REFLECTIONS = {
 function reflect(text) {
   let reflectedText = text.toLowerCase();
 
-  // Aplikasikan reflections
   for (const [key, value] of Object.entries(REFLECTIONS)) {
     const regex = new RegExp(`\\b${key}\\b`, "gi");
     reflectedText = reflectedText.replace(regex, `__${value}__`);
   }
 
-  // Replace placeholders back
   reflectedText = reflectedText.replace(/__([^_]+)__/g, "$1");
 
   return reflectedText;
 }
 
 const PATTERNS = [
-  // Salam dan sapaan dengan variasi
   {
     regex:
       /^(?:(?:se(?:lamat\s+)?|g(?:ood\s+)?|h(?:i|ey|ello|alo))\s*)?(pagi|morning)$/i,
@@ -41,7 +38,6 @@ const PATTERNS = [
     ],
   },
 
-  // Pertanyaan kegiatan dengan variasi bahasa
   {
     regex:
       /(?:(?:lagi|sedang|lg|sdg)\s*(?:ngapain|apa(?:an)?|doing)|(?:what(?:'s|\s+are|\s+is))?\s*(?:you\s+)?(?:doing|up)|(?:ngapain|apain)(?:\s+aja)?|how['']?s\s+it\s+going)\??/i,
@@ -52,7 +48,6 @@ const PATTERNS = [
     ],
   },
 
-  // Ungkapan kerinduan dengan variasi dan intensitas
   {
     regex:
       /(?:(?:aku|saya|i|me)\s*(?:kangen|rindu|miss|missing)\s*(?:kamu|lu|you)?\s*(?:banget|so much)?|kangen|rindu)/i,
@@ -64,7 +59,6 @@ const PATTERNS = [
     ],
   },
 
-  // Ungkapan cinta dengan berbagai bentuk
   {
     regex:
       /(?:(?:aku|saya|i)?\s*(?:sayang|cinta|love|suka|❤️|♥️|💕|💘|💗|💓)(?:\s*(?:bgt|banget|sekali|very|so|much|parah))?\s*(?:(?:sama|with|ama|sm)\s*)?(?:kamu|you|lu|lo|u)|(?:i\s*)?(?:love|luv|wuv|❤️)\s*(?:u|you|ya?)(?:\s*(?:so|very|really|much|banget))?|(?:sayang|cinta|love)\s*(?:bgt|banget|much|very))(?:\s*[!?.,]*)?/i,
@@ -76,7 +70,6 @@ const PATTERNS = [
     ],
   },
 
-  // Ekspresi perasaan dengan reflection
   {
     regex:
       /(aku merasa|aku lagi|i feel|i am|gue lagi) (sedih|senang|lelah|capek|stress|bingung|takut|khawatir|nervous|sad|happy|tired|worried|scared|excited|lonely)/i,
@@ -88,7 +81,6 @@ const PATTERNS = [
     ],
   },
 
-  // Pertanyaan tentang hubungan
   {
     regex: /(kamu masih sayang|do you still love|still love me)/i,
     responses: [
@@ -98,7 +90,6 @@ const PATTERNS = [
     ],
   },
 
-  // Semangat dan motivasi
   {
     regex:
       /(aku capek|i'm\ tired|exhausted|burnout|stress|sulit|susah|hard|difficult)/i,
@@ -110,7 +101,6 @@ const PATTERNS = [
     ],
   },
 
-  // Dukungan saat down
   {
     regex: /(aku sedih|i'm sad|bad day|hari buruk)/i,
     responses: [
@@ -121,7 +111,6 @@ const PATTERNS = [
     ],
   },
 
-  // Prestasi dan kebahagiaan
   {
     regex:
       /(aku seneng|aku +bahagia|i'm happy|excited|berhasil|success|achievement)/i,
@@ -133,7 +122,6 @@ const PATTERNS = [
     ],
   },
 
-  // Pertanyaan umum tentang hari
   {
     regex: /(gimana hari|how was your day|hari gimana|harimu)/i,
     responses: [
@@ -143,7 +131,6 @@ const PATTERNS = [
     ],
   },
 
-  // Mengajak ngobrol atau curhat
   {
     regex: /(mau cerita|pengen curhat|wanna talk|need to talk|butuh ngobrol)/i,
     responses: [
@@ -153,7 +140,6 @@ const PATTERNS = [
     ],
   },
 
-  // Keluhan tentang jarak
   {
     regex:
       /(jarak jauh|long distance|jauh banget|miss being together|pengen ketemu|kapan ketemu)/i,
@@ -164,7 +150,6 @@ const PATTERNS = [
     ],
   },
 
-  // Pertanyaan tentang makan
   {
     regex:
       /(udah makan|have you eaten|makan apa|what did you eat|lunch|dinner|breakfast)/i,
@@ -175,7 +160,6 @@ const PATTERNS = [
     ],
   },
 
-  // Dukungan akademik/kerja
   {
     regex:
       /(ujian|test|exam|kerja|work|project|tugas|assignment|deadline|busy)/i,
@@ -187,7 +171,6 @@ const PATTERNS = [
     ],
   },
 
-  // Expressing worry tentang partner
   {
     regex: /(aku khawatir|worried about|takut|scared|anxiety|cemas)/i,
     responses: [
@@ -198,7 +181,6 @@ const PATTERNS = [
     ],
   },
 
-  // Apologies atau maaf
   {
     regex: /(maaf|sorry|apologize|my bad|salah)/i,
     responses: [
@@ -208,7 +190,6 @@ const PATTERNS = [
     ],
   },
 
-  // Sleep atau tidur
   {
     regex: /(ngantuk|sleepy|mau tidur|going to sleep|good night|tired|lelah)/i,
     responses: [
@@ -218,7 +199,6 @@ const PATTERNS = [
     ],
   },
 
-  // Ekspresi bangun atau selamat pagi
   {
     regex:
       /(?:(?:aku|saya)\s*)?(?:udah|sudah)?\s*(?:b\s*a\s*n\s*g\s*u\s*n|bangun)|(?:se(?:lamat\s+)?|good\s+)?pagi|(?:good\s+)?morning/i,
@@ -240,7 +220,6 @@ const PATTERNS = [
     ],
   },
 
-  // Time zone complaints
   {
     regex: /(beda waktu|time difference|time zone|timezone|waktu|time)/i,
     responses: [
@@ -251,7 +230,6 @@ const PATTERNS = [
   },
 ];
 
-// Responses khusus berdasarkan waktu
 function getTimeBasedResponse() {
   const hour = new Date().getHours();
 
@@ -278,7 +256,6 @@ function getTimeBasedResponse() {
   }
 }
 
-// Enhanced default responses
 const DEFAULT_RESPONSES = [
   "Hey sayang! 😘 Maaf aku lagi ga bisa chat proper, but I got your message! Nanti aku bales yang beneran ya! Love you! ❤️",
   "My love! 🥰 Currently unavailable tapi aku baca pesanmu! you so sweet for texting me! Miss you! 💕",
@@ -286,48 +263,38 @@ const DEFAULT_RESPONSES = [
   "Hi love! 🌟 Getting your message makes my day even when I can't respond immediately! Back to {reflected} soon! ❤️",
 ];
 
-// Function untuk process message dengan enhanced reflection
 function processMessage(message, userName = "sayang") {
   const lowerMessage = message.toLowerCase().trim();
 
-  // Cek setiap pattern
   for (const pattern of PATTERNS) {
     const match = lowerMessage.match(pattern.regex);
     if (match) {
-      // Pilih random response
       const response =
         pattern.responses[Math.floor(Math.random() * pattern.responses.length)];
 
-      // Replace placeholders
       let finalResponse = response;
 
-      // Replace {reflected} dengan reflection of message atau nama
       if (finalResponse.includes("{reflected}")) {
         const reflected = reflect(message) || userName;
         finalResponse = finalResponse.replace(/{reflected}/g, reflected);
       }
 
-      // Replace {X} dengan captured groups atau reflections
       if (match[1] && finalResponse.includes("{X}")) {
         finalResponse = finalResponse.replace(/{X}/g, reflect(match[1]));
       }
 
-      // Replace {feeling} untuk emotional states
       if (match[2] && finalResponse.includes("{feeling}")) {
         finalResponse = finalResponse.replace(/{feeling}/g, match[2]);
       }
-
-      // Replace {emotion}
       if (finalResponse.includes("{emotion}")) {
         const emotionMatch = lowerMessage.match(
-          /(sedih|senang|lelah|capek|stress|bingung|takut|khawatir|sad|happy|tired|worried|scared|excited|lonely)/
+          /(nangis|sedih|senang|lelah|capek|stress|bingung|takut|khawatir|sad|happy|tired|worried|scared|excited|lonely)/
         );
         if (emotionMatch) {
           finalResponse = finalResponse.replace(/{emotion}/g, emotionMatch[1]);
         }
       }
 
-      // Replace {activity}
       if (finalResponse.includes("{activity}")) {
         const activityMatch = lowerMessage.match(
           /(ujian|test|exam|kerja|work|project|tugas|assignment)/
@@ -342,7 +309,6 @@ function processMessage(message, userName = "sayang") {
         }
       }
 
-      // Replace {problem}
       if (finalResponse.includes("{problem}")) {
         const problemMatch = lowerMessage.match(
           /(susah|sulit|difficult|hard|frustrating)/
@@ -358,12 +324,10 @@ function processMessage(message, userName = "sayang") {
     }
   }
 
-  // Jika tidak ada pattern yang match, gunakan time-based response atau default
   const timeResponses = getTimeBasedResponse();
   const allDefaults = [...DEFAULT_RESPONSES, ...timeResponses];
   let response = allDefaults[Math.floor(Math.random() * allDefaults.length)];
 
-  // Apply reflection to default response
   response = response.replace(/{reflected}/g, reflect(message) || userName);
 
   return response;
