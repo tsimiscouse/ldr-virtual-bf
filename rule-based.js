@@ -54,7 +54,8 @@ const PATTERNS = [
 
   // Ungkapan kerinduan dengan variasi dan intensitas
   {
-    regex: /(?:(?:aku|saya|i|me)\s*(?:kangen|rindu|miss|missing)\s*(?:kamu|lu|you)?\s*(?:banget|so much)?|kangen|rindu)/i,
+    regex:
+      /(?:(?:aku|saya|i|me)\s*(?:kangen|rindu|miss|missing)\s*(?:kamu|lu|you)?\s*(?:banget|so much)?|kangen|rindu)/i,
     responses: [
       "Aku juga kangen banget sama kamu! 🥺💔 kenapa {reflected} baby?",
       "Awww aku juga kangen banget baby! 😭❤️ Virtual hug for you! 🤗 kenapa {reflected} baby?",
@@ -144,8 +145,7 @@ const PATTERNS = [
 
   // Mengajak ngobrol atau curhat
   {
-    regex:
-      /(mau cerita|pengen curhat|wanna talk|need to talk|butuh ngobrol)/i,
+    regex: /(mau cerita|pengen curhat|wanna talk|need to talk|butuh ngobrol)/i,
     responses: [
       "Of course sayang! 🥰 Aku mau denger cerita kamu! Tapi maaf ya kalau responsenya agak telat, nanti aku reply proper!",
       "Always ready to listen, my love! 💕 Cerita aja dulu, nanti aku baca dan respond ya! Aku always here for you",
@@ -210,12 +210,33 @@ const PATTERNS = [
 
   // Sleep atau tidur
   {
-    regex:
-      /(ngantuk|sleepy|mau tidur|going to sleep|good night|tired|lelah)/i,
+    regex: /(ngantuk|sleepy|mau tidur|going to sleep|good night|tired|lelah)/i,
     responses: [
       "{reflected}?, 😴 Sleep tight my love! Dream of me! 💕 Good night sayang~",
       "{reflected}?, Rest well, my beautiful! 🌙✨ {reflected} butuh good sleep! Sweet dreams and I love you! 😘",
       "{reflected}?, Tidur yang nyenyak ya sayang! 💤 I will be dreaming of you too! Good night baby! ❤️",
+    ],
+  },
+
+  // Ekspresi bangun atau selamat pagi
+  {
+    regex:
+      /(?:(?:aku|saya)\s*)?(?:udah|sudah)?\s*(?:b\s*a\s*n\s*g\s*u\s*n|bangun)|(?:se(?:lamat\s+)?|good\s+)?pagi|(?:good\s+)?morning/i,
+    responses: [
+      "Baby {reflected}? Pagi, sayangku! ☀️ Aku berharap kamu tidur nyenyak. Have a beautiful day ahead! 🥰",
+      "Baby {reflected}? Morning, love! 🌅 So glad to see you up already! Hope you had sweet dreams about me! 😉💕",
+      "Baby {reflected}? Good Morning, my love! ✨😘",
+    ],
+  },
+
+  {
+    regex:
+      /(?:aku|saya)?\s*(?:lapar|laper|hungry|butuh\s+makanan|pengen\s+makan|craving)\b/i,
+    responses: [
+      "Baby {reflected}? 🥺 Udah jam segini, jangan tunda makan ya sayang. Aku mau kamu sehat terus. ❤️",
+      "Baby {reflected}? 😋 Aku wish I could cook for you! Makan yang banyak ya, my love! 💕",
+      "Baby {reflected}? 😔 Makan dulu ya sayang, biar {reflected} nggak sakit. Nanti kalau udah kenyang chat aku lagi ya! 🥰",
+      "Baby {reflected}! 🍽️ Makan dulu baby! Kamu udah kerja keras, you deserve it! 😘",
     ],
   },
 

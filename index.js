@@ -59,7 +59,7 @@ function getTimeBasedResponse() {
 }
 
 // Enhanced message processing function
-function processMessage(message, userName = "sayang") {
+function processMessage(message) {
   const lowerMessage = message.toLowerCase().trim();
 
   // Check each pattern
