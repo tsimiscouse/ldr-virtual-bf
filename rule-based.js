@@ -89,7 +89,7 @@ const PATTERNS = [
 
   // Pertanyaan tentang hubungan
   {
-    regex: /(kamu\s+masih\s+sayang|do\s+you\s+still\s+love|still\s+love\s+me)/i,
+    regex: /(kamu masih sayang|do you still love|still love me)/i,
     responses: [
       " Tentu saja aku masih sayang sama kamu babyy! ❤️ Distance doesn't change my feelings at all!",
       "Of course I still love you babyy! 🥰 Nothing can change that, even time zones!",

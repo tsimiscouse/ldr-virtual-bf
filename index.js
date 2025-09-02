@@ -79,6 +79,7 @@ function processMessage(message, userName = "sayang") {
         finalResponse = finalResponse.replace(/{reflected}/g, reflected);
       }
 
+      // Handle greetings
       if (match[1]) {
         const capturedGreeting = match[1];
         let finalGreeting = capturedGreeting; 
@@ -89,7 +90,7 @@ function processMessage(message, userName = "sayang") {
         ) {
           finalGreeting = `${capturedGreeting}`;
         } 
-        responseText = responseText.replace(/{greeting}/g, finalGreeting);
+        finalResponse = finalResponse.replace(/{greeting}/g, finalGreeting);
       }
 
       // Replace {X} with captured groups or reflections
