@@ -124,7 +124,7 @@ if (hobbyMatch) {
 ## 📂 Struktur Project
 
 ```
-whatsapp-girlfriend-bot/
+ldr-virtual-bf/
 ├── config.js           # Konfigurasi bot
 ├── responses.js        # Logic respons dan pattern matching
 ├── reflections.js      # Transformasi kata untuk respons natural
