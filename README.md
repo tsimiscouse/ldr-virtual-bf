@@ -68,17 +68,15 @@ npm run dev
 ### 1. Scan QR Code
 Setelah menjalankan bot, QR code akan muncul di terminal:
 
+![QR Code](./assets/qr.jpg)
 ```
-<img src="./assets/qr.jpg" alt="Logo" width="200"/>
 📱 Buka WhatsApp > Settings > Linked Devices > Link a Device
 ```
 
 ### 2. Bot Siap Digunakan
 Setelah scan berhasil:
 
-```
-<img src="./assets/siap.png" alt="Logo" width="200"/>
-```
+![Berhasil](./assets/siap.jpg)
 
 ### 3. Mulai Chat
 Bot akan otomatis merespons pesan dari nomor partner yang telah dikonfigurasi.
