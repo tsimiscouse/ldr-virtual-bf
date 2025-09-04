@@ -148,7 +148,7 @@ ldr-virtual-bf/
 
 - `npm start` - Jalankan bot
 - `npm run dev` - Development dengan auto-restart
-- `npm test` - (Belum tersedia)
+- `npm test` - test conversation
 
 ### Dependencies
 
