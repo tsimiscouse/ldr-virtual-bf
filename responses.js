@@ -65,7 +65,14 @@ function getResponse(message) {
 
   // ngabarin otw
   if (/otw|on my way/.test(message)) {
-    return "Otw ya sayang, hati-hati di jalan! 🚗💨";
+    return "Otw ya sayang, hati-hati di jalan! 🚗💨. Kamu naik apa?";
+  }
+
+  // aku naik
+  const rideMatch = message.match(/aku naik (.*)/);
+  if (rideMatch) {
+    const ride = reflect(rideMatch[1]);
+    return `Oh, kamu naik ${ride}? Semoga perjalananmu lancar ya! Kalau capek nanti kabarin aku, aku siap jemput 😘`;
   }
 
   // Tanya lagi apa
@@ -87,14 +94,14 @@ function getResponse(message) {
   const foodMatch = message.match(/(aku makan) (.*)/);
   if (foodMatch) {
     const food = reflect(foodMatch[2]);
-    return `Wah, kamu makan ${food}? Enak tuh! Kalau aku sih pengen makan bareng kamu 😘`
+    return `Wah, kamu suka makan ${food}? Enak tuh! Kalau aku sih pengen makan bareng kamu 😘`
     };
 
   // sakit reflect.
   const sickMatch = message.match(/(aku sakit) (.*)/);
   if (sickMatch) {
     const illness = reflect(sickMatch[2]);
-    return `Oh tidak, kamu ${illness}? Semoga cepat sembuh ya! Kalau butuh apa-apa bilang aja, aku siap bantu 😘`;
+    return `Oh tidak, kamu ${illness} dari kapan? Semoga cepat sembuh ya! Kalau butuh apa-apa bilang aja, aku siap bantu 😘`;
   }
 
   // tugas ujian
@@ -120,7 +127,7 @@ function getResponse(message) {
 
   // Tanya hari
   if (/bagaimana harimu/.test(message)) {
-    return "Hari ini aku senang karena bisa ngobrol sama kamu 💖";
+    return "Hari ini aku senang karena bisa ngobrol sama kamu 💖. Kamu gimana?";
   }
 
   // Fallback random
