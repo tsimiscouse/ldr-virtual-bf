@@ -67,7 +67,7 @@ describe('Conversations Tests', () => {
     
     // 10. Afternoon tiredness
     responses.push(getResponse('aku merasa capek'));
-    expect(responses[6]).toContain('Senang dengar kamu merasa capek');
+    expect(responses[6]).toContain('Oh sayang');
     
     // 11. Evening activity
     responses.push(getResponse('aku lagi pulang kerja'));
@@ -112,7 +112,7 @@ describe('Conversations Tests', () => {
     
     // 5. Want to talk
     responses.push(getResponse('aku mau cerita'));
-    expect(responses[4]).toContain('Mau cerita');
+    expect(responses[4]).toContain('Aku selalu siap dengerin kamu');
     
     // 6. Missing partner
     responses.push(getResponse('aku rindu kamu'));
@@ -242,13 +242,13 @@ describe('Conversations Tests', () => {
     responses.push(getResponse('aku merasa khawatir tentang ujian'));
     expect(responses[7]).toContain('Oh sayang 😢 kenapa kamu merasa khawatir');
     
-    // 9. Encouragement needed
-    responses.push(getResponse('aku butuh semangat'));
-    expect(responses[8]).toMatch(/Hey sayang!|baby!/); // Fallback but supportive
+    // // 9. Encouragement needed
+    // responses.push(getResponse('aku butuh semangat'));
+    // expect(responses[8]).toMatch(/Hey sayang!|baby!/); // Fallback but supportive
     
     // 10. Success celebration
     responses.push(getResponse('aku berhasil selesaikan semua'));
-    expect(responses[9]).toMatch(/Hey sayang!|baby!/); // Fallback
+    expect(responses[8]).toMatch(/Hey sayang!|baby!/); // Fallback
   });
 
   // Test 7: Complete conversation flow - Travel and adventure

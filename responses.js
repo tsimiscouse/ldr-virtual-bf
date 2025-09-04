@@ -32,7 +32,7 @@ function getResponse(message) {
     }
   }
   // jawaban ada yang mau diceritain
-  if (/ada|ada yang mau aku ceritain|mau cerita|mau curhat/.test(message)) {
+  if (/ada yang mau aku ceritain|mau cerita|mau curhat/.test(message)) {
     return "Aku selalu siap dengerin kamu, sayang! Ceritain aja apa yang kamu rasain atau alami 😘";
   }
 
@@ -112,10 +112,10 @@ function getResponse(message) {
   //semnagat
   if (/semangat|ayo semangat|keep fighting|you can do it/.test(message)) {
     return "Makasih sayang! you are the best! 😘";
-    };
+  };
 
   // congrats
-  if (/|congrats|congratulation/.test(message)) {
+  if (/congrats|congratulation/.test(message)) {
     return "Makasih sayang! Aku senang banget kamu bangga sama aku 😘";
     };
 
