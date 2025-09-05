@@ -12,7 +12,6 @@ const responses = {
   askMood: [
     "gimana hari inii sayang?",
     "kamu gimana hari ini?",
-    "kamu aman kah babyy hari ini?",
     "kamu lagi apaahh?",
     "how's ur day babyy?",
   ],
@@ -98,12 +97,11 @@ function getResponse(message) {
   }
 
   // aku naik
-  const rideMatch = message.match(/(aku) (nanti naik|naik) (.*)/);
+  const rideMatch = message.match(/(aku nanti naik|nanti naik|naik) (.*)/);
   if (rideMatch) {
-    const pronoun = rideMatch[1] ? reflect(rideMatch[1]) : "kamu";
-    const verb = reflect(rideMatch[2]);
-    const ride = reflect(rideMatch[3]);
-    return `okeyy babyy, ${pronoun} ${verb} ${ride}? hati hatii yaa babyy, kabarin nanti kalo udah sampeee 😘`;
+    const verb = reflect(rideMatch[1]);
+    const ride = rideMatch[2];
+    return `okeyy babyy, ${verb} ${ride}? hati hatii yaa babyy, kabarin nanti kalo udah sampeee 😘`;
   }
 
   const whereMatch = message.match(/(aku) (mau ke|ke) (.*)/);
@@ -164,26 +162,36 @@ function getResponse(message) {
   }
 
   // Mood
-  const moodMatch = message.match(/(aku) (merasa|ngerasa|lagi|gi) (.*)/);
-  if (moodMatch) {
-    const mood = moodMatch[3];
-    if (
-      mood.includes("sedih") ||
-      mood.includes("anxious") ||
-      mood.includes("pusing") ||
-      mood.includes("galau") ||
-      mood.includes("bad") ||
-      mood.includes("stress") ||
-      mood.includes("down") ||
-      mood.includes("gak enak") ||
-      mood.includes("khawatir") ||
-      mood.includes("capek")
-    ) {
-      return `babyy 😞 kenapaa kamuu ${mood}? nanti cerita ke aku yaa`;
-    } else {
-      return `happy to hear kalo kamu ngerasa ${mood}! 😊 nanti cerita ke aku yaa`;
-    }
+const moodMatch = message.match(/(aku) (merasa|ngerasa|lagi|gi) (.*)/);
+if (moodMatch) {
+  const mood = moodMatch[3];
+  
+  // Opsi pertanyaan lanjutan
+  const followUpQuestions = [
+    "udah makan belum?",
+    "ada tugas kah baby?",
+    "hari ini mau ke mana?",
+  ];
+
+  const randomQuestion = followUpQuestions[Math.floor(Math.random() * followUpQuestions.length)];
+
+  if (
+    mood.includes("sedih") ||
+    mood.includes("anxious") ||
+    mood.includes("pusing") ||
+    mood.includes("galau") ||
+    mood.includes("bad") ||
+    mood.includes("stress") ||
+    mood.includes("down") ||
+    mood.includes("gak enak") ||
+    mood.includes("khawatir") ||
+    mood.includes("capek")
+  ) {
+    return `kenapa kamu ${mood}? maaf yaa tapi aku belum bisa dengerin cerita kamu sekarang, kamu ${randomQuestion}`;
+  } else {
+    return `happy to hear kalo kamu ngerasa ${mood}! 😊 nanti cerita ke aku yaa tapi aku belum bisa dengerin cerita kamu sekarang babyy, kamu ${randomQuestion}`;
   }
+}
 
   // terima kasih
   if (
