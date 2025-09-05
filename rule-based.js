@@ -61,7 +61,7 @@ const PATTERNS = [
 
   {
     regex:
-      /(?:(?:aku|saya|i)?\s*(?:sayang|cinta|love|suka|❤️|♥️|💕|💘|💗|💓)(?:\s*(?:bgt|banget|sekali|very|so|much|parah))?\s*(?:(?:sama|with|ama|sm)\s*)?(?:kamu|you|lu|lo|u)|(?:i\s*)?(?:love|luv|wuv|❤️)\s*(?:u|you|ya?)(?:\s*(?:so|very|really|much|banget))?|(?:sayang|cinta|love)\s*(?:bgt|banget|much|very))(?:\s*[!?.,]*)?/i,
+      /(?:(?:aku|saya|i)?\s*(?:sayang|cinta|love|suka|❤️)(?:\s*(?:bgt|banget|sekali|very|so|much|parah))?\s*(?:(?:sama|with|ama|sm)\s*)?(?:kamu|you|lu|lo|u)|(?:i\s*)?(?:love|luv|wuv|❤️)\s*(?:u|you|ya?)(?:\s*(?:so|very|really|much|banget))?|(?:sayang|cinta|love)\s*(?:bgt|banget|much|very))(?:\s*[!?.,]*)?/i,
     responses: [
       "Aku juga sayang banget sama kamu! ❤️❤️ You mean the world to me!",
       "Love you too so much, baby! 😍💕",
