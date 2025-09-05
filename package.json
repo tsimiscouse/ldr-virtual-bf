@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/tsimiscouse/ldr-virtual-bf#readme",
   "dependencies": {
+    "dotenv": "^17.2.2",
     "puppeteer": "^24.18.0",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "github:BenyFilho/whatsapp-web.js#fix_event_ready_again"
+  },
+  "devDependencies": {
+    "jest": "^30.1.3"
   }
 }
