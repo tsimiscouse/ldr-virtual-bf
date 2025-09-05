@@ -42,8 +42,9 @@ function getLoveResponse(message) {
   const responses = [
     `Aku juga ${
       message.toLowerCase().includes("sayang") ||
-      message.toLowerCase().includes("cinta") 
-      ? "cinta" : "sayang"
+      message.toLowerCase().includes("cinta")
+        ? "cinta"
+        : "sayang"
     } kamu babyyy ❤️❤️`,
     `Sama, aku juga ${
       message.toLowerCase().includes("rindu") ||
@@ -68,7 +69,9 @@ function getResponse(message) {
   message = message.toLowerCase();
 
   // Mood
-  const moodMatch = message.match(/aku (merasa|ngerasa|lagi merasa|lagi ngerasa|gi ngerasa) (.*)/);
+  const moodMatch = message.match(
+    /aku (merasa|ngerasa|lagi merasa|lagi ngerasa|gi ngerasa) (.*)/
+  );
   if (moodMatch) {
     const mood = reflect(moodMatch[1]);
     if (
@@ -123,10 +126,12 @@ function getResponse(message) {
   }
 
   // makan reflect.
-  const foodMatch = message.match(/aku (mau makan|lagi makan|mam dulu) (.*)/);
+  const foodMatch = message.match(/(aku) (mau makan|lagi makan|mam) (.*)/);
   if (foodMatch) {
-    const food = reflect(foodMatch[2]);
-    return `${food}? enak bangeett mauuuu!! met mamm yaa babyy`;
+    const pronoun = reflect(foodMatch[1]);
+    const verb = reflect(foodMatch[2]);
+    const food = reflect(foodMatch[3]);
+    return `${pronoun} ${verb} ${food}? enak bangeett mauuuu!! met mamm yaa babyy, kabarin klo udahh selesai yaa`;
   }
 
   // Selamat malam
@@ -144,11 +149,6 @@ function getResponse(message) {
     return `Aku baik, sayang. Bagaimana kabarmu? 💖`;
   }
 
-  // ngabarin otw
-  if (/otw|on my way/.test(message)) {
-    return "Otw ya sayang, hati-hati di jalan! 🚗💨. Kamu naik apa?";
-  }
-
   // aku naik
   const rideMatch = message.match(/(aku) (nanti naik|naik) (.*)/);
   if (rideMatch) {
@@ -156,6 +156,19 @@ function getResponse(message) {
     const verb = reflect(rideMatch[2]);
     const ride = reflect(rideMatch[3]);
     return `okeyy, ${pronoun} ${verb} ${ride}? hati hatii yaa babyy, kabarin nanti kalo udah sampeee 😘`;
+  }
+
+  const whereMatch = message.match(/(aku) (mau ke|ke) (.*)/);
+  if (whereMatch) {
+    const pronoun = reflect(whereMatch[1]);
+    const verb = reflect(whereMatch[2]);
+    const place = reflect(whereMatch[3]);
+    return `oohh ${pronoun} ${verb} ${place}? naik apa babyy ke ${place}? 😘`;
+  }
+
+  // ngabarin otw
+  if (/otw|on my way/.test(message)) {
+    return "mau kemana babyy?, hati-hati di jalan yaaa 😘";
   }
 
   // Tanya lagi apa
