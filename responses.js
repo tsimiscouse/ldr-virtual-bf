@@ -37,22 +37,26 @@ function getRandom(arr) {
 
 // love things
 function getLoveResponse(message) {
-  // random words for response
+  const lowerMessage = message.toLowerCase();
+  
+  // Determine the appropriate response word based on input
+  let responseWord;
+  if (lowerMessage.includes("cinta") || lowerMessage.includes("love")) {
+    responseWord = "cinta";
+  } else if (lowerMessage.includes("rindu") || lowerMessage.includes("kangen")) {
+    responseWord = lowerMessage.includes("rindu") ? "rindu" : "kangen";
+  } else if (lowerMessage.includes("sayang")) {
+    responseWord = "sayang";
+  } else {
+    responseWord = "sayang"; // default
+  }
+  
   const responses = [
-    `aku juga ${
-      message.toLowerCase().includes("sayang") ||
-      message.toLowerCase().includes("cinta")
-        ? "cinta"
-        : "sayang"
-    } kamu babyyy ❤️❤️`,
-    `Sama, aku juga ${
-      message.toLowerCase().includes("rindu") ||
-      message.toLowerCase().includes("kangen")
-        ? "rindu"
-        : "kangen"
-    } kamu babyy`,
+    `aku juga ${responseWord} kamu babyyy ❤️❤️`,
+    `Sama, aku juga ${responseWord} kamu babyy`,
     "I love you too babyy!! more than words can say ❤️",
   ];
+  
   const loveMatch = message.match(
     /(love|sayang|cinta|rindu|kangen) (you|kamu|u)/i
   );
@@ -150,7 +154,7 @@ function getResponse(message) {
   }
 
   // sakit reflect.
-  const sickMatch = message.match(/(aku) (sakit|gaenak badan| ga enak badan) (.*)/);
+  const sickMatch = message.match(/(aku) (sakit) (.*)/);
   if (sickMatch) {
     const pronoun = reflect(sickMatch[1]);
     const illness = reflect(sickMatch[2]);
@@ -162,7 +166,7 @@ function getResponse(message) {
   }
 
   // Mood
-const moodMatch = message.match(/(aku) (merasa|ngerasa|lagi|gi) (.*)/);
+const moodMatch = message.match(/(aku) (merasa|ngerasa) (.*)/);
 if (moodMatch) {
   const mood = moodMatch[3];
   
