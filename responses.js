@@ -210,7 +210,13 @@ if (moodMatch) {
   const activityMatch = message.match(/aku lagi (.*)/);
   if (activityMatch) {
     const activity = reflect(activityMatch[1]);
-    return `WAWWW, kamu lagi ${activity}? asikk betul`;
+    return `WAWWW, kamu lagi ${activity} apa? asikk betul`;
+  }
+
+  //okee
+  const okMatch = message.match(/(oke|ok|okey|okayy|okeeyy|sip|siap|yoi|yess)*/);
+  if (okMatch && okMatch[0]) {
+    return `okee babyy, noted!`;
   }
 
   // aku nanti mau
@@ -254,7 +260,7 @@ if (moodMatch) {
   }
 
   // Tanya lagi apa
-  if (/lagi apa(\?)?$|gi apa(\?)?$|lagi apa sayang(\?)?$/.test(message)) {
+  if (/lagi apa(\?)?$|gi apa(\?)?$|lagi apa sayang(\?)?$|wyd(\?)?$|lagi ngapain(\?)?$/.test(message)) {
     return `aku lagi mikirin kamu hehehe 😘 kamu lagi apa, sayang?`;
   }
 
