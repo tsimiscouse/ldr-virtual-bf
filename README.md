@@ -1,4 +1,4 @@
-# WhatsApp Virtual-BF Bot 💕
+# Virtual Partner Bot 💕
 
 Bot WhatsApp otomatis yang berperan sebagai pacar virtual dengan respons yang natural dan penuh kasih sayang. Bot ini menggunakan `whatsapp-web.js` untuk integrasi WhatsApp dan memiliki sistem respons cerdas yang dapat memahami berbagai jenis pesan.
 
@@ -23,7 +23,6 @@ Bot WhatsApp otomatis yang berperan sebagai pacar virtual dengan respons yang na
 
 - Node.js (versi 14 atau lebih baru)
 - WhatsApp account
-- Chrome/Chromium browser
 
 ### 1. Clone Repository
 
