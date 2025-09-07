@@ -23,7 +23,6 @@ Bot WhatsApp otomatis yang berperan sebagai pacar virtual dengan respons yang na
 
 - Node.js (versi 14 atau lebih baru)
 - WhatsApp account
-- Chrome/Chromium browser
 
 ### 1. Clone Repository
 
