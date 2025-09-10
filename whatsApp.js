@@ -1,7 +1,9 @@
+// WhatsAppBot.js
 const { Client, LocalAuth } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
-const config = require('./config');
-const { randomDelay, getResponse } = require('./responses');
+const config = require("./config");
+const { randomDelay, getResponse } = require("./responses");
+const { log, error } = require("./logger");
 
 class WhatsAppBot {
   constructor() {
@@ -9,7 +11,7 @@ class WhatsAppBot {
       authStrategy: new LocalAuth(),
       puppeteer: config.PUPPETEER_CONFIG,
     });
-    
+
     this.partnerNumber = config.PARTNER_NUMBER;
     this.initializeEventHandlers();
   }
@@ -17,42 +19,43 @@ class WhatsAppBot {
   initializeEventHandlers() {
     // QR State Code handler
     this.client.on("qr", (qr) => {
-      console.log("🔄 QR Code received, scan dengan WhatsApp:");
+      log("🔄 QR Code received, scan dengan WhatsApp:");
       qrcode.generate(qr, { small: true });
-      console.log("📱 Buka WhatsApp > Settings > Linked Devices > Link a Device");
+      log("📱 Buka WhatsApp > Settings > Linked Devices > Link a Device");
     });
-    
+
     // Ready State handler
     this.client.on("ready", () => {
-      console.log("✅ Bot siap digunakan!");
-      console.log(`💕 Partner: ${this.partnerNumber}`);
-      console.log("🤖 Bot akan otomatis merespon pesan dari partner!");
+      log("✅ Bot siap digunakan!");
+      log(`💕 Partner: ${this.partnerNumber}`);
+      log("🤖 Bot akan otomatis merespon pesan dari partner!");
     });
-    
+
     // Message State handler
     this.client.on("message", async (message) => {
       try {
         if (message.from === this.partnerNumber && !message.fromMe) {
-          console.log(`📨 Pesan masuk: "${message.body}"`);
+          log(`📨 Pesan masuk: "${message.body}"`);
 
           await this.client.sendPresenceAvailable();
-          
           await randomDelay(config.MIN_DELAY, config.MAX_DELAY);
 
           const response = getResponse(message.body);
-          
-          console.log(`💬 Mengirim: "${response}"`);
+
+          log(`💬 Mengirim: "${response}"`);
           await message.reply(response);
-          console.log("✅ Terkirim!");
+          log("✅ Terkirim!");
         }
-      } catch (error) {
-        console.error("❌ Error:", error);
-        
+      } catch (err) {
+        error(`❌ Error: ${err.message}`);
+
         if (message.from === this.partnerNumber) {
           try {
-            await message.reply("Maaf ada error sebentar, coba lagi ya sayang! 😅");
-          } catch (err) {
-            console.error("❌ Error kirim pesan error:", err);
+            await message.reply(
+              "Maaf ada error sebentar, coba lagi ya sayang! 😅"
+            );
+          } catch (sendErr) {
+            error(`❌ Error kirim pesan error: ${sendErr.message}`);
           }
         }
       }
@@ -60,8 +63,8 @@ class WhatsAppBot {
   }
 
   start() {
-    console.log("🚀 Memulai WhatsApp Bot...");
-    console.log(`📋 Partner: ${this.partnerNumber}`);
+    log("🚀 Memulai WhatsApp Bot...");
+    log(`📋 Partner: ${this.partnerNumber}`);
     this.client.initialize();
   }
 }
