@@ -82,22 +82,7 @@ Bot akan otomatis merespons pesan dari nomor partner yang telah dikonfigurasi.
 
 ## 🎭 Demo
 
-```
-👤 You: Hai sayang
-🤖 Bot: Halo cantikku! 😘 Bagaimana harimu, sayang?
-
-👤 You: Aku merasa sedih
-🤖 Bot: Oh sayang 😢 kenapa kamu merasa sedih?
-
-👤 You: Aku lagi makan nasi gudeg
-🤖 Bot: Wah, kamu makan nasi gudeg? Enak tuh! Kalau aku sih pengen makan bareng kamu 😘
-
-👤 You: Good morning
-🤖 Bot: Morning! 🌞 Kamu lagi apa?
-
-👤 You: Aku cinta kamu
-🤖 Bot: Aku juga cinta kamu 😘
-```
+![Demo](./assets/demo.jpg)
 
 ## 🔧 Konfigurasi
 
