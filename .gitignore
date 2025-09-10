@@ -6,3 +6,5 @@ node_modules/
 *.wwebjs_auth/session
 
 .env
+
+/coverage

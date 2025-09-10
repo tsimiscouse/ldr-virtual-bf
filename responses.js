@@ -75,24 +75,19 @@ function getResponse(message) {
   message = message.toLowerCase();
 
   // tugas ujian
-  const probMatch = message.match(
+  const probDetailMatch = message.match(
     /(aku) (ada|ngerjain|lagi ngerjain) (tugas|ujian|test|exam) (.*)?/
   );
-  if (probMatch) {
-    const verb = probMatch[2];
-    const problemType = probMatch[3];
-    const detail = probMatch[4] ? probMatch[4].trim() : "";
+  if (probDetailMatch) {
+    const verb = probDetailMatch[2];
+    const problemType = probDetailMatch[3];
+    const detail = reflect(probDetailMatch[4]);
 
     if (problemType === "tugas") {
-      if (detail) {
-        if (verb === "ada") {
-          return `ohh kamu ada tugas ${detail}? semangat yaa babyy ngerjainnya! jangan lupa istirahat biar ndaa capek ❤️`;
-        }
-        if (verb === "ngerjain" || verb === "lagi ngerjain") {
-          return `semangat yaa babyy ngerjain tugas ${detail}! kalo mau ditemenin kabarin yaa ❤️`;
-        }
-      } else {
-        return "semangat yaa babyy ngerjain tugasnya! jangan lupa istirahat biar ndaa capek ❤️";
+      if (verb === "ada") {
+        return `ohh kamu ada tugas ${detail}? semangat yaa babyy ngerjainnya! jangan lupa istirahat biar ndaa capek ❤️`;
+      } else if (verb === "ngerjain" || verb === "lagi ngerjain") {
+        return `semangat yaa babyy ngerjain tugas ${detail}! kalo mau ditemenin kabarin yaa ❤️`;
       }
     } else if (
       problemType === "ujian" ||
@@ -100,6 +95,31 @@ function getResponse(message) {
       problemType === "exam"
     ) {
       return "semangat yaa sayang buat ujiannya! ❤️ aku yakin kamu bisa ngerjainnya insyaallah nilainya bagus aamiin 🤲";
+    }
+  }
+
+  const probMatch = message.match(
+    /(aku) (ada|ngerjain|lagi ngerjain) (tugas|ujian|test|exam)/
+  );
+  if (probMatch) {
+    const verb = probMatch[2];
+    const problemType = probMatch[3];
+
+    if (problemType === "tugas") {
+      if (verb === "ada") {
+        return `ohh kamu ${verb} ${problemType}? tugas apa baby?`;
+      } else if (verb === "ngerjain" || verb === "lagi ngerjain") {
+        return `okeyy babyy semangatt, kamu ${verb} ${problemType} apa baby?`;
+      }
+    } else if (
+      problemType === "ujian" ||
+      problemType === "test" ||
+      problemType === "exam"
+    ) {
+      if (verb === "ada") {
+        return `ohh kamu ${verb} ${problemType}? ${problemType} apa baby?`;
+      }
+      return "okeeyy babyy semangat yaa sayang buat ujiannya! ❤️ aku yakin kamu bisa ngerjainnya insyaallah nilainya bagus aamiin 🤲";
     }
   }
 
@@ -173,15 +193,21 @@ function getResponse(message) {
   }
 
   // sakit reflect.
-  const sickMatch = message.match(/(aku) (sakit) (.*)/);
-  if (sickMatch) {
-    const pronoun = reflect(sickMatch[1]);
-    const illness = reflect(sickMatch[2]);
-    const detail = sickMatch[3] ? reflect(sickMatch[3]) : "";
+  const sickDetailMatch = message.match(/(aku) (sakit) (.*)/);
+  if (sickDetailMatch) {
+    const pronoun = reflect(sickDetailMatch[1]);
+    const illness = reflect(sickDetailMatch[2]);
+    const detail = sickDetailMatch[3] ? reflect(sickDetailMatch[3]) : "";
     if (detail) {
       return `aaaa ${pronoun} ${illness} ${detail}? dari kapan baby? cepat sembuh ya babyy! kaloo butuh apa-apa bilang ajaa yaa 🥺🥺`;
     }
-    return `aaaa ${pronoun} ${illness} dari kapan babyy? cepat sembuh ya babyy! kaloo butuh apa-apa bilang ajaa yaa 🥺🥺`;
+  }
+
+  const sickMatch = message.match(/(aku) (sakit)/);
+  if (sickMatch) {
+    const pronoun = reflect(sickMatch[1]);
+    const illness = reflect(sickMatch[2]);
+    return `aaaa ${pronoun} ${illness} apa babyy? 🥺🥺`;
   }
 
   // Mood
@@ -231,9 +257,19 @@ function getResponse(message) {
   if (activityMatch) {
     const fullActivity = activityMatch[2];
 
-    const parts = fullActivity.split(/\s+apa/);
+    const parts = fullActivity.split(/\s+/);
     const activity = parts[0];
     const hasDetail = parts.length > 1;
+
+    if (fullActivity.includes("tidur") || fullActivity.includes("bobo")) {
+      return `ohh kamu lagi ${fullActivity}? okeeyy babyy selamat bobo yaaa!! goodnight my love 😴❤️.`;
+    }
+    if (fullActivity.includes("makan") || fullActivity.includes("mam")) {
+      return `ohh kamu lagi ${fullActivity}? okeeyy babyy, selamat makan yaa!`;
+    }
+    if (fullActivity.includes("tugas") || fullActivity.includes("nugas")) {
+      return `ohh kamu lagi ${fullActivity}? semangat yaa babyy ngerjainnya! jangan lupa istirahat biar ndaa capek ❤️`;
+    }
 
     if (hasDetail) {
       return `WAWWW, kamu lagi ${fullActivity} apa? asikk betul`;
@@ -247,7 +283,7 @@ function getResponse(message) {
     /(oke|ok|okey|okayy|okeeyy|sip|siap|yoi|yess)*/
   );
   if (okMatch && okMatch[0]) {
-    return `okee babyy, noted!`;
+    return `okee babyy`;
   }
 
   // aku nanti mau
@@ -255,13 +291,13 @@ function getResponse(message) {
   if (mauMatch) {
     const activity = reflect(mauMatch[2]);
     if (activity.includes("tidur") || activity.includes("bobo")) {
-      return `ohh kamu nanti mau ${activity}? okeeyy babyy selamat bobo yaaa!! goodnight my love 😴❤️.`;
+      return `ohh kamu nanti mau ${activity}? okeeyy babyy selamat bobo yaaa!! 😴❤️`;
     }
     if (activity.includes("makan") || activity.includes("mam")) {
       return `ohh kamu nanti mau ${activity}? okeeyy babyy, kabarin kalo udah mau makan yaa!`;
     }
     if (activity.includes("otw") || activity.includes("on my way")) {
-      return `ohh kamu nanti mau ${activity}? hati-hati di jalan yaaa 😘`;
+      return `ohh kamu nanti mau ${activity}? naik apa babyy?`;
     }
     return `WAHHH, kamu mau ${activity}? semangat yaa! aku temenin dari sini!`;
   }
