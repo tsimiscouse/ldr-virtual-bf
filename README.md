@@ -109,14 +109,19 @@ if (hobbyMatch) {
 
 ```
 ldr-virtual-bf/
-├── config.js           # Konfigurasi bot
-├── responses.js        # Logic respons dan pattern matching
-├── reflections.js      # Transformasi kata untuk respons natural
-├── whatsappClient.js   # WhatsApp client handler
-├── index.js           # Entry point
-├── package.json       # Dependencies
-├── .env.example       # Template environment variables
-└── README.md          # Dokumentasi
+├── config.js            # Konfigurasi bot
+├── responses.js         # Logic respons dan pattern matching
+├── reflections.js       # Transformasi kata untuk respons natural
+├── whatsappClient.js    # WhatsApp client handler (pakai logger)
+├── index.js             # Entry point
+├── logger.js            # Logger ke terminal + logs/bot.log
+├── logs/
+│   └── bot.log          # File log otomatis diisi saat bot jalan
+├── tests/
+│   └── conversation.test.js   # Unit test
+├── package.json         # Dependencies
+├── .env.example         # Template environment variables
+└── README.md            # Dokumentasi
 ```
 
 ## 🔒 Security & Privacy
