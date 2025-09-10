@@ -56,7 +56,8 @@ function getLoveResponse(message) {
 
   const responses = [
     `aku juga ${responseWord} kamu babyyy ❤️❤️`,
-    `Sama, aku juga ${responseWord} kamu babyy`,
+    `sama, aku juga ${responseWord} kamu babyy`,
+    "love you too babyy!! ❤️",
     "I love you too babyy!! more than words can say ❤️",
   ];
 
@@ -107,7 +108,7 @@ function getResponse(message) {
 
     if (problemType === "tugas") {
       if (verb === "ada") {
-        return `ohh kamu ${verb} ${problemType}? tugas apa baby?`;
+        return `ohh kamu ${verb} ${problemType}? ${problemType} apa baby?`;
       } else if (verb === "ngerjain" || verb === "lagi ngerjain") {
         return `okeyy babyy semangatt, kamu ${verb} ${problemType} apa baby?`;
       }
